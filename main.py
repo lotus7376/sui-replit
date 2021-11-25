@@ -332,7 +332,7 @@ class secletCog(commands.Cog, name = "管理者専用"):
         elif message.author.bot:
             pass  # 送信者がbotの場合無視
         elif "すい" in message.content or "すぃ" in message.content or "sui" in message.content:
-            file = discord.File('/home/runner/sui/sui.png', filename='sui.png')
+            file = discord.File('/home/runner/sui-replit/sui.png', filename='sui.png')
             await message.reply(file=file)
             print("----------")
             print("sent sui to ")
