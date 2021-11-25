@@ -7,10 +7,8 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 ffmpeg = "^1.4"
-discord = "^1.7.3"
-discord-musicbot = "^0.0.3-alpha.20170604"
-"discord.py-stubs" = "^1.7.3"
 Flask = "^2.0.2"
+discord = "^1.7.3"
 
 [tool.poetry.dev-dependencies]
 
