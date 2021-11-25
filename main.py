@@ -218,7 +218,7 @@ class VoiceCog(commands.Cog, name="参加・退出"):
             pass
 
 
-class dictionaryCog(commands.Cog, name="辞書(機能停止中)"):
+class dictionaryCog(commands.Cog, name="辞書"):
     def __init__(self, bot):
         self.bot = bot
 
