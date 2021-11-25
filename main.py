@@ -13,7 +13,7 @@ from voicegenerate import create_MP3
 from server import keep_alive
 
 # アクセストークン、プレフィックス、グローバル変数の設定
-TOKEN = os.getenv("TOKEN")
+TOKEN = int(os.getenv("TOKEN"))
 ADMIN = os.getenv("ADMIN")
 PREFIX = "."
 global read_ID
