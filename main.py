@@ -14,6 +14,7 @@ from server import keep_alive
 
 # アクセストークン、プレフィックス、グローバル変数の設定
 TOKEN = os.getenv("TOKEN")
+ADMIN = os.getenv("ADMIN")
 PREFIX = "."
 global read_ID
 read_ID = []
@@ -54,6 +55,9 @@ class Help(commands.HelpCommand):
             if cog is None:
                 # コグが未設定のコマンドの場合、no_category属性を参照
                 name = self.no_category
+                if self.context.author.id != ADMIN and name == "管理者専用":
+                    # 管理者でない場合は管理者コマンドを表示しない
+                    continue
             else:
                 name = cog.qualified_name
             for command in command_list:
@@ -214,7 +218,7 @@ class VoiceCog(commands.Cog, name="参加・退出"):
             pass
 
 
-class dictionaryCog(commands.Cog, name="辞書"):
+class dictionaryCog(commands.Cog, name="辞書(機能停止中)"):
     def __init__(self, bot):
         self.bot = bot
 
@@ -315,7 +319,9 @@ class dictionaryCog(commands.Cog, name="辞書"):
             await ctx.send(embed=embed)
 
 
-class secletCog(commands.Cog):
+class secletCog(commands.Cog, name = "管理者専用"):
+    suiflg = True
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -327,12 +333,56 @@ class secletCog(commands.Cog):
             pass  # コマンドプレフィックスから始まる場合無視
         elif message.author.bot:
             pass  # 送信者がbotの場合無視
-        elif "すい" in message.content or "すぃ" in message.content:
+        elif "すい" in message.content or "すぃ" in message.content or "sui" in message.content:
             file = discord.File('/home/runner/sui/sui.png', filename='sui.png')
-            await message.channel.send(file=file)
+            await message.reply(file=file)
             print("----------")
-            print("sent sui in")
-            print(message.channel.id)
+            print("sent sui to ")
+            print(message.author.id)
+
+    @commands.command(description = "リプライ機能のオンオフを切り替えますぃ")
+    async def change(self, ctx):
+        # 機能のオンオフを切り替える
+
+        if ctx.author.id == ADMIN: # 管理者のみが使用可能
+            if secletCog.suiflg:
+                secletCog.suiflg = False
+                title = "Invalidation"
+                item = "無効化しました"
+                color = GREEN
+                embed = discord.Embed(title = title, description = item, color = color)
+                await ctx.send(embed = embed)
+
+            else:
+                secletCog.suiflg = True
+                title = "Activtion"
+                item = "有効化しました"
+                color = GREEN
+                embed = discord.Embed(title = title, description = item, color = color)
+                await ctx.send(embed = embed)
+
+            print("suiflg change to ")
+            print(secletCog.suiflg)
+
+    @commands.command(description = "リプライ機能の状態を表示しますぃ")
+    async def status(self, ctx):
+        # 機能の状況を返す
+
+        title = "Status"
+        if ctx.author.id == ADMIN: # 管理者のみが使用可能
+            if secletCog.suiflg:
+                item = "有効です"
+                color = GREEN
+                embed = discord.Embed(title = title, description = item, color = color)
+                await ctx.send(embed = embed)
+            else:
+                item = "無効です"
+                color = GREEN
+                embed = discord.Embed(title = title, description = item, color = color)
+                await ctx.send(embed = embed)
+
+            print("suiflg = ")
+            print(secletCog.suiflg)
 
 # Webサーバーの起動
 keep_alive()
