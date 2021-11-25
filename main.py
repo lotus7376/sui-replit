@@ -138,11 +138,6 @@ class VoiceCog(commands.Cog, name="参加・退出"):
 
                     item = "ボイスチャンネルに接続してないですぃ"
                 else:
-                    #ボイスチャンネルから切断する
-                    print("読み上げ終了")
-                    print("読み上げ中のチャンネル")
-                    print(read_ID)
-                    print("--------------------")
 
                     read_ID.remove(ctx.channel.id)
                     await ctx.guild.voice_client.disconnect()
@@ -150,6 +145,12 @@ class VoiceCog(commands.Cog, name="参加・退出"):
                     title = "読み上げ終了"
                     item = "ばいばいですぃ"
                     color = GREEN
+
+                    #ボイスチャンネルから切断する
+                    print("読み上げ終了")
+                    print("読み上げ中のチャンネル")
+                    print(read_ID)
+                    print("--------------------")
             else:
                 print("エラー：読み上げているチャンネル以外で切断コマンドが実行されました")
 
@@ -230,7 +231,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
         color = RED
 
         # ファイルを開く
-        f = open("/home/runner/sui/user_dic.txt", mode='a+')
+        f = open("/home/runner/sui-replit/user_dic.txt", mode='a+')
 
         # 既に追加済みの場合追加しない
         for line in f:
@@ -265,8 +266,8 @@ class dictionaryCog(commands.Cog, name="辞書"):
         color = RED
 
         # 削除する単語以外を新しいファイルにコピー
-        with open('/home/runner/sui/user_dic.txt', mode='r') as oldfile:
-            with open('/home/runner/sui/temp.txt', mode='w') as newfile:
+        with open('/home/runner/sui-replit/user_dic.txt', mode='r') as oldfile:
+            with open('/home/runner/sui-replit/temp.txt', mode='w') as newfile:
 
                 line = oldfile.readline()
 
@@ -278,8 +279,8 @@ class dictionaryCog(commands.Cog, name="辞書"):
                         newfile.write(line)
                         line = oldfile.readline()
 
-        with open('/home/runner/sui/user_dic.txt', mode='r') as oldfile:
-            with open('/home/runner/sui/temp.txt', mode='r') as newfile:
+        with open('/home/runner/sui-replit/user_dic.txt', mode='r') as oldfile:
+            with open('/home/runner/sui-replit/temp.txt', mode='r') as newfile:
 
                 # 単語が削除されていない場合、単語が登録されていない
                 if oldfile.readlines() == newfile.readlines():
@@ -295,8 +296,8 @@ class dictionaryCog(commands.Cog, name="辞書"):
         await ctx.send(embed=embed)
 
         # 古いファイルを削除し、新しいファイルをリネーム
-        os.remove('/home/runner/sui/user_dic.txt')
-        os.rename('/home/runner/sui/temp.txt', '/home/runner/sui/user_dic.txt')
+        os.remove('/home/runner/sui-replit/user_dic.txt')
+        os.rename('/home/runner/sui-replit/temp.txt', '/home/runner/sui-replit/user_dic.txt')
 
     @commands.command(description="登録されている単語を表示しますぃ")
     async def wordlist(self, ctx):
@@ -304,7 +305,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
         print("----------")
         print("登録されている単語を表示")
 
-        with open('/home/runner/sui/user_dic.txt', mode='r') as f:
+        with open('/home/runner/sui-replit/user_dic.txt', mode='r') as f:
             list = f.read()
 
             print(list)

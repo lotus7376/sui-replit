@@ -45,7 +45,7 @@ def mention_name(text, name, channel, role):
 def user_dic(text):
 
     # ファイル指定
-    f = open('/home/runner/sui/user_dic.txt', 'r')
+    f = open('/home/runner/sui-replit/user_dic.txt', 'r')
     line = f.readline()
 
     while line:
