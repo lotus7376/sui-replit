@@ -18,10 +18,8 @@ ADMIN = int(os.getenv("ADMIN"))
 PREFIX = "."
 global read_ID
 read_ID = []
-global green
-green = discord.Colour.from_rgb(0, 215, 125)
-global red
-red = discord.Colour.from_rgb(225, 80, 80)
+GREEN = discord.Colour.from_rgb(0, 215, 125)
+RED = discord.Colour.from_rgb(225, 80, 80)
 
 
 class SuiBot(commands.Bot):
