@@ -42,7 +42,7 @@ class Help(commands.HelpCommand):
     async def send_bot_help(self, mapping):
         # ヘルプコマンドの処理を変更する
 
-        embed = discord.Embed(title="コマンドリスト", color=green)
+        embed = discord.Embed(title="コマンドリスト", color=GREEN)
         for cog in mapping:
             field = ""
             # コマンドリストを取得
@@ -81,7 +81,7 @@ class VoiceCog(commands.Cog, name="参加・退出"):
 
         title = "エラー"
         item = ""
-        color = red
+        color = RED
         if ctx.message.guild:
             # 送信者がボイスチャンネルに接続していない場合は無視
             if ctx.author.voice is None:
@@ -115,7 +115,7 @@ class VoiceCog(commands.Cog, name="参加・退出"):
                     item = "接続したチャンネル:" + connectch
                     item += "\n"
                     item += "読み上げるチャンネル:" + readch
-                    color = green
+                    color = GREEN
 
         # 埋め込みの作成
         embed = discord.Embed(title=title, description=item, color=color)
@@ -128,7 +128,7 @@ class VoiceCog(commands.Cog, name="参加・退出"):
         print("----------")
         title = "エラー"
         item = ""
-        color = red
+        color = RED
 
         if ctx.message.guild:
             # ボイスチャンネルに接続していない場合は無視
@@ -149,7 +149,7 @@ class VoiceCog(commands.Cog, name="参加・退出"):
 
                     title = "読み上げ終了"
                     item = "ばいばいですぃ"
-                    color = green
+                    color = GREEN
             else:
                 print("エラー：読み上げているチャンネル以外で切断コマンドが実行されました")
 
@@ -227,7 +227,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
         print("辞書に単語を追加：" + arg1 + ',' + arg2)
         title = "エラー"
         item = ""
-        color = red
+        color = RED
 
         # ファイルを開く
         f = open("/home/runner/sui/user_dic.txt", mode='a+')
@@ -249,7 +249,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
         item += "\n"
         item += "読み方"
         item += arg2
-        color = green
+        color = GREEN
 
         # 埋め込みの作成
         embed = discord.Embed(title=title, description=item, color=color)
@@ -262,7 +262,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
         print("削除する単語：" + arg)
         title = "エラー"
         item = ""
-        color = red
+        color = RED
 
         # 削除する単語以外を新しいファイルにコピー
         with open('/home/runner/sui/user_dic.txt', mode='r') as oldfile:
@@ -289,7 +289,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
                 else:
                     title = "辞書から単語を削除"
                     item = "削除する単語:{arg}"
-                    color = green
+                    color = GREEN
 
         # 埋め込みの作成
         embed = discord.Embed(title=title, description=item, color=color)
@@ -312,7 +312,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
 
             embed = discord.Embed(title="登録されている単語一覧",
                                   description=list,
-                                  color=green)
+                                  color=GREEN)
 
             await ctx.send(embed=embed)
 
