@@ -331,6 +331,8 @@ class secletCog(commands.Cog, name = "管理者専用"):
             pass  # コマンドプレフィックスから始まる場合無視
         elif message.author.bot:
             pass  # 送信者がbotの場合無視
+        elif not secletCog.suiflg:
+            pass # 機能がオフの場合無視
         elif "すい" in message.content or "すぃ" in message.content or "sui" in message.content:
             file = discord.File('/home/runner/sui-replit/sui.png', filename='sui.png')
             await message.reply(file=file)
