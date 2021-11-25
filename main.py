@@ -224,7 +224,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
     async def addword(self, ctx, arg1, arg2):
 
         print("----------")
-        print("辞書に単語を追加：" + arg1 + ',' + arg2)
+        print("辞書に単語を追加:" + arg1 + ',' + arg2)
         title = "エラー"
         item = ""
         color = RED
@@ -236,7 +236,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
         for line in f:
             if arg1 in line:
                 print("エラー：「" + line + "」が辞書に存在します")
-                item = "「{arg1}」は既に追加済みですぃ"
+                item = F"「{arg1}」は既に追加済みですぃ"
                 f.close()
                 break
 
@@ -244,10 +244,10 @@ class dictionaryCog(commands.Cog, name="辞書"):
         f.write(arg1 + ',' + arg2 + '\n')
 
         title = "辞書に単語を追加"
-        item = "追加する単語"
+        item = "追加する単語:"
         item += arg1
         item += "\n"
-        item += "読み方"
+        item += "読み方:"
         item += arg2
         color = GREEN
 
@@ -259,7 +259,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
     async def deleteword(self, ctx, arg):
 
         print("----------")
-        print("削除する単語：" + arg)
+        print("削除する単語:" + arg)
         title = "エラー"
         item = ""
         color = RED
@@ -272,7 +272,6 @@ class dictionaryCog(commands.Cog, name="辞書"):
 
                 while line:
                     pattern = line.strip().split(',')
-                    print(pattern)
                     if pattern[0] in arg:
                         line = oldfile.readline()
                     else:
@@ -285,7 +284,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
                 # 単語が削除されていない場合、単語が登録されていない
                 if oldfile.readlines() == newfile.readlines():
                     print("エラー：" + arg + "が辞書に存在しません")
-                    item = "「{arg}」が追加されてないですぃ"
+                    item = F"「{arg}」が追加されてないですぃ"
                 else:
                     title = "辞書から単語を削除"
                     item = "削除する単語:{arg}"
