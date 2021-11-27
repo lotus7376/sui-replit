@@ -318,7 +318,7 @@ class dictionaryCog(commands.Cog, name="辞書"):
 
 
 class secletCog(commands.Cog, name = "管理者専用"):
-    suiflg = True
+    suiflg = False
 
     def __init__(self, bot):
         self.bot = bot
