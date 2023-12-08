@@ -1,6 +1,7 @@
 import subprocess
 import re
 import urllib.parse
+from gtts import gTTS
 
 
 # 絵文字は読み上げない
@@ -87,7 +88,8 @@ def create_MP3(inputText, name, channel, role):
 
     print("置換後のtext：" + inputText)
 
-    s_quote = urllib.parse.quote(inputText)
-    mp3url = f'http://translate.google.com/translate_tts?ie=UTF-8&q={s_quote}&tl=ja&client=tw-ob'
-
-    return mp3url
+    #s_quote = urllib.parse.quote(inputText)
+    #mp3url = f'http://translate.google.com/translate_tts?ie=UTF-8&q={s_quote}&tl=ja&client=tw-ob'
+    tts = gTTS(inputText, lang='ja')
+    tts.save("voice.mp3")
+    return
